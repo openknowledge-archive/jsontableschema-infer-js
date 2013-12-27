@@ -10,7 +10,7 @@ a readable stream of a
 [![NPM](https://nodei.co/npm/jts-infer.png)](https://nodei.co/npm/jts-infer/)
 
 
-#Usage ```jtsInfer(readableStream, [options], callback)```
+#Usage jtsInfer(readableStream, [options], callback)
 
 
     var jtsInfer = require('jts-infer)
