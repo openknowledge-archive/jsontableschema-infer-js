@@ -10,31 +10,33 @@ a readable stream of a
 [![NPM](https://nodei.co/npm/jts-infer.png)](https://nodei.co/npm/jts-infer/)
 
 
-##Usage jtsInfer(readableStream, [options], callback)
+#API
+
+##jtsInfer(readableStream, [options], callback)
 
 
     var jtsInfer = require('jts-infer)
       , fs = require('fs);
 
-    jstInfer(fs.createReadStream('path/to/data.csv'), function(err, schema, scores){
-      //to something with schema [and scores]
+    jtsInfe(fs.createReadStream('path/to/data.csv'), function(err, schema, scores){
+      //do something with schema [and scores]
     });
 
 
 ###Options
 
-An options hash can be specified
+An ```options``` hash can be specified:
 
 - separator: separator to separate cells in a row (default to ',')
 - newline: separator to separate different rows (default to '\n')
 - nSample: if specified only the ```nSample``` first rows of the source will be used to infer the types otherwise all the rows will be used
 
 
-##Tests
+#Tests
 
     npm test
 
 
-##License
+#License
 
 MIT
