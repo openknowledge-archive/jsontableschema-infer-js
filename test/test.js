@@ -1,8 +1,10 @@
 var util = require('util')
   , assert = require('assert')
   , path = require('path')
+  , fs = require('fs')
   , Readable = require('stream').Readable
-  , jtsInfer = require('..');
+  , jtsInfer = require('..')
+  ;
 
 
 var fixture = [
@@ -72,4 +74,29 @@ describe('jts-infer', function(){
 
   });
 
+  var exp = {
+    "fields": [
+      {"name":"date","type":"date"},
+      {"name":"value","type":"number"}
+    ]
+  }
+  it('should infer schema from a CSV file on disk', function(done) {
+    jtsInfer(fs.createReadStream('test/data/data1.csv'), function(err, schema, scores) {
+      if (err) throw err;
+      assert.deepEqual(schema, exp);
+      done();
+    });
+  });
+
+  // this fails atm
+  // { fields: [ { name: '\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\t\u0004\u0007\u0000\u0000\u0004\u0000\u0000\u0001\u0000\u0002\u0004\u0006\u0000\u0003\u0000\u0000\u0001\t\u0004\u0007\u0000\u0000\u0007\u0000\u0000\u0001\u0000\u0002\u0005\u0000\u0000\u0001\u0000\u0000', type: 'boolean' } ] }
+  it('should infer schema from a CSV file on disk', function(done) {
+    jtsInfer(fs.createReadStream('test/data/data1.csv', {encoding: 'utf8'}), function(err, schema, scores) {
+      if (err) throw err;
+      assert.deepEqual(schema, exp);
+      done();
+    });
+  });
+
 });
+
