@@ -21,7 +21,15 @@ module.exports = function(s, opts, callback){
 
   s.pipe(parser)
     .on('data', function(line){
-      var cells = parser.line(line).map(function(cell) {return parser.cell(cell).toString();});
+      var cells = parser.line(line).map(function(cell) {
+        cell = parser.cell(cell);
+        var out = cell.toString();
+        // browser case - in browser we will have decoded to an array for some reason
+        if (out == '[object Uint8Array]') {
+          out = String.fromCharCode.apply(null, cell);
+        }
+        return out;
+      });
       if(cnt === 0){
 
         cells.forEach(function(x){
