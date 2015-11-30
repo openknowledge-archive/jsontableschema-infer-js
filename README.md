@@ -7,7 +7,7 @@ a readable stream of a
 [CSV](http://en.wikipedia.org/wiki/Comma-separated_values) source
 
 
-[![NPM](https://nodei.co/npm/jts-infer.png)](https://nodei.co/npm/jts-infer/)
+[![NPM](https://nodei.co/npm/json-table-schema-infer.png)](https://nodei.co/npm/jts-infer/)
 
 
 #API
